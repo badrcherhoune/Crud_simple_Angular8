@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by title"
+          [(ngModel)]="title"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="searchTitle()">
+            Search
+          </button>
+        </div>
+      </div>
+    <h1>Tutorials List</h1>
+  <p></p>            
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tutorial of tutorials; let i = index" >
+        <td [class.active]="i == currentIndex"
+        (click)="setActiveTutorial(tutorial, i)">{{ tutorial.id }}</td>
+        <td>{{ tutorial.title}}</td>
+        <td>{{ tutorial.description }}</td>
+        <td>{{ tutorial.published ? "Published" : "Pending" }}</td>
+        <td><a class="badge badge-warning" style="color: black;" routerLink="/tutorials/{{ tutorial.id }}"><span>Edit</span></a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="m-3 btn btn-sm btn-danger" (click)="removeAllTutorials()">
+    Remove All
+  </button>
+
+</div>
